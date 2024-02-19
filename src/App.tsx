@@ -38,8 +38,8 @@ const App = () => {
   });
 
   return (
-    <div className="grid h-full place-items-center dark:bg-[#121212]">
-      <form className="w-80">
+    <div className="grid h-full place-items-center px-4 dark:bg-[#121212]">
+      <form className="w-full max-w-80">
         <AutocompleteInput
           title="Recipes"
           placeholder="Search a recipe..."
