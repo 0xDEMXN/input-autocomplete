@@ -38,7 +38,7 @@ const App = () => {
   });
 
   return (
-    <div className="h-full grid place-items-center">
+    <div className="grid h-full place-items-center dark:bg-[#121212]">
       <form className="w-80">
         <AutocompleteInput
           title="Recipes"
