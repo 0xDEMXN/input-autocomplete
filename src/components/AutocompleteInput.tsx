@@ -1,14 +1,16 @@
 import { debounce } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const AutocompleteInput: React.FC<{
+type AutocompleteInputProps = {
   onSelectedValue: (value: string) => void;
   title: string;
   placeholder: string;
   data: string[];
   minLength: number;
   limit: number;
-}> = ({
+};
+
+const AutocompleteInput: React.FC<AutocompleteInputProps> = ({
   onSelectedValue,
   title,
   placeholder,
@@ -22,13 +24,14 @@ const AutocompleteInput: React.FC<{
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (data.length === 0) return;
+    if (limit > data.length) limit = data.length;
 
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (activeIndex > 0) setActiveIndex(activeIndex - 1);
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      if (activeIndex < data.length - 1) setActiveIndex(activeIndex + 1);
+      if (activeIndex < limit - 1) setActiveIndex(activeIndex + 1);
     } else if (e.key === "Enter") {
       e.preventDefault();
       if (activeIndex >= 0) {
